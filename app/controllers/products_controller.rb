@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
 	def index
 		@products = Product.includes(:user).all
 		respond_to do |format|
-			format.json {render :json => @products}
+		  	format.html # show default view
+ 			format.json {render :json => @products}
 		end
 	end
 
@@ -17,5 +18,9 @@ class ProductsController < ApplicationController
 				format.json { render :json => @product.errors, :status => :unprocessable_entity }
 			end
 		end	
+	end
+
+	def new
+		@product = Product.new
 	end
 end
